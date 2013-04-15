@@ -2247,6 +2247,20 @@ Arena.ArenaStartPersonalRating = 0
 
 Arena.ArenaStartMatchmakerRating = 1500
 
+#   Arena.ProgressiveMMRTimer
+#     Description: Time between increases in MMR search range
+#       Default:    30000 (30 seconds)
+
+Arena.ProgressiveMMRTimer = 30000
+
+#
+#    Arena.ProgressiveMMRStepSize
+#        Description: Amount by which the search range is increased
+#                     for each passing of ProgressiveMMRTimer
+#     Default:    50
+
+Arena.ProgressiveMMRStepSize = 50
+
 #
 #    ArenaLog.ExtendedInfo
 #        Description: Include extended info to ArenaLogFile for each player after rated arena
