@@ -124,6 +124,10 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recvData)
     // LANG_ADDON should not be changed nor be affected by flood control
     else
     {
+        // Custom - LANG_UNIVERSAL in Dalaran PVP zone
+        if (sender->GetAreaId() == 4570)
+            lang = LANG_UNIVERSAL;
+
         // send in universal language if player in .gmon mode (ignore spell effects)
         if (sender->isGameMaster())
             lang = LANG_UNIVERSAL;
