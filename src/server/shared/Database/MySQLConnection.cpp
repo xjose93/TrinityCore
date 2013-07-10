@@ -517,8 +517,8 @@ bool MySQLConnection::_HandleMySQLErrno(uint32 errNo)
         case ER_BAD_FIELD_ERROR:
         case ER_NO_SUCH_TABLE:
             TC_LOG_ERROR(LOG_FILTER_SQL, "Your database structure is not up to date. Please make sure you've executed all queries in the sql/updates folders.");
-            ACE_OS::sleep(10);
-            std::abort();
+            //ACE_OS::sleep(10);
+            //std::abort();
             return false;
         case ER_PARSE_ERROR:
             TC_LOG_ERROR(LOG_FILTER_SQL, "Error while parsing SQL. Core fix required.");
