@@ -204,6 +204,18 @@ Battleground::Battleground()
     StartMessageIds[BG_STARTING_EVENT_SECOND] = LANG_BG_WS_START_ONE_MINUTE;
     StartMessageIds[BG_STARTING_EVENT_THIRD]  = LANG_BG_WS_START_HALF_MINUTE;
     StartMessageIds[BG_STARTING_EVENT_FOURTH] = LANG_BG_WS_HAS_BEGUN;
+
+    Morphs[TEAM_ALLIANCE] = urand(0, MORPH_NORMAL);
+    Morphs[TEAM_HORDE] = urand(0, MORPH_NORMAL);
+    if (Morphs[TEAM_HORDE] == Morphs[TEAM_ALLIANCE])
+    {
+        for (uint8 i = 0; i <= MORPH_NORMAL; i++)
+        {
+            Morphs[TEAM_HORDE] = urand(0, MORPH_NORMAL);
+            if (Morphs[TEAM_HORDE] != Morphs[TEAM_ALLIANCE])
+                break;
+        }
+    }
 }
 
 Battleground::~Battleground()

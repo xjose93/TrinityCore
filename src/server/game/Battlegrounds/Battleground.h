@@ -262,6 +262,30 @@ enum BGHonorMode
 #define BG_AWARD_ARENA_POINTS_MIN_LEVEL 71
 #define ARENA_TIMELIMIT_POINTS_LOSS    -16
 
+enum CrossFactionMorphs
+{
+    MORPH_MURLOCK       = 0,
+    MORPH_NAGA,
+    MORPH_ETEREO,
+    MORPH_DEMONIO,
+    MORPH_NOMUERTO,
+    MORPH_SILITHUS,
+    MORPH_NORMAL,
+
+    MORPH_MURLOCK_M     = 346,
+    MORPH_MURLOCK_F     = 441,
+    MORPH_NAGA_M        = 19363,
+    MORPH_NAGA_F        = 19365,
+    MORPH_ETEREO_M      = 17689,
+    MORPH_ETEREO_F      = 17685,
+    MORPH_DEMONIO_M     = 11337,
+    MORPH_DEMONIO_F     = 4162,
+    MORPH_NOMUERTO_M    = 27774,
+    MORPH_NOMUERTO_F    = 26725,
+    MORPH_SILITHUS_M    = 12154,
+    MORPH_SILITHUS_F    = 12155,
+};
+
 /*
 This class is used to:
 1. Add player to battleground
@@ -528,6 +552,27 @@ class Battleground
         virtual uint64 GetFlagPickerGUID(int32 /*team*/ = -1) const { return 0; }
         virtual void SetDroppedFlagGUID(uint64 /*guid*/, int32 /*team*/ = -1) {}
         uint32 GetTeamScore(uint32 TeamID) const;
+
+        uint8 Morphs[2];
+
+        inline uint32 GetCrossFactionBGMorphId(uint8 morph, bool male)
+        {
+            switch (morph)
+            {
+                case MORPH_MURLOCK:
+                    return male ? MORPH_MURLOCK_M : MORPH_MURLOCK_F;
+                case MORPH_NAGA:
+                    return male ? MORPH_NAGA_M : MORPH_NAGA_F;
+                case MORPH_ETEREO:
+                    return male ? MORPH_ETEREO_M : MORPH_ETEREO_F;
+                case MORPH_DEMONIO:
+                    return male ? MORPH_DEMONIO_M : MORPH_DEMONIO_F;
+                case MORPH_NOMUERTO:
+                    return male ? MORPH_NOMUERTO_M : MORPH_NOMUERTO_F;
+                case MORPH_SILITHUS:
+                    return male ? MORPH_SILITHUS_M :MORPH_SILITHUS_F;
+            }
+        }
 
         virtual uint32 GetPrematureWinner();
 

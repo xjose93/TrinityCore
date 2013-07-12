@@ -86,33 +86,16 @@ bool Player::SendBattleGroundChat(uint32 msgtype, std::string message)
 
 void Player::MorphFit(bool value)
 {
-    if (!IsPlayingNative() && value)
+    if (value)
     {
-        if (GetOTeam() == HORDE)
+        if (Battleground* bg = GetBattleground())
         {
-            if (getGender() == GENDER_MALE)
-            {
-                SetDisplayId(19723);
-                SetNativeDisplayId(19723);
-            }
-            else
-            {
-                SetDisplayId(19724);
-                SetNativeDisplayId(19724);
-            }
-        }
-        else
-        {
-            if (getGender() == GENDER_MALE)
-            {
-                SetDisplayId(20578);
-                SetNativeDisplayId(20578);
-            }
-            else
-            {
-                SetDisplayId(20579);
-                SetNativeDisplayId(20579);
-            }
+            if (bg->Morphs[GetTeam() == ALLIANCE ? TEAM_ALLIANCE : TEAM_HORDE] == MORPH_NORMAL)
+                return;
+
+            uint32 morphId = bg->GetCrossFactionBGMorphId(bg->Morphs[GetTeam() == ALLIANCE ? TEAM_ALLIANCE : TEAM_HORDE], getGender() == GENDER_MALE ? true : false);
+            SetDisplayId(morphId);
+            SetNativeDisplayId(morphId);
         }
     }
     else
