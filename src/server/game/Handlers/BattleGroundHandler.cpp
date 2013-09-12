@@ -84,6 +84,12 @@ void WorldSession::HandleBattlemasterJoinOpcode(WorldPacket& recvData)
     recvData >> instanceId;                                // instance id, 0 if First Available selected
     recvData >> joinAsGroup;                               // join as group
 
+    if (joinAsGroup && !sWorld->getBoolConfig(CONFIG_BATTLEGROUND_JOIN_AS_GROUP))
+    {
+        ChatHandler(this).PSendSysMessage(LANG_BG_CANNOT_JOIN_AS_GROUP);
+        return;
+    }
+
     if (!sBattlemasterListStore.LookupEntry(bgTypeId_))
     {
         TC_LOG_ERROR(LOG_FILTER_NETWORKIO, "Battleground: invalid bgtype (%u) received. possible cheater? player guid %u", bgTypeId_, _player->GetGUIDLow());

@@ -2130,6 +2130,14 @@ BattleGround.PremadeGroupWaitForMatch = 1800000
 Battleground.GiveXPForKills = 0
 
 #
+#    Battleground.AllowJoinAsGroup
+#        Description: Allow to join (or not) as group to battlegrounds.
+#        Default:     1 - (Enabled)
+#                     0 - (Disabled)
+
+Battleground.AllowJoinAsGroup = 1
+
+#
 #    Battleground.Random.ResetHour
 #        Description: Hour of the day when the global instance resets occur.
 #        Range:       0-23
